@@ -52,8 +52,52 @@ function AppState(props) {
         navigate('/')
     }
 
+    const addProduct = async (title, brand, company) => {
+        const response = await fetch(`${host}/api/product/add`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            },
+            body: JSON.stringify({title: title, brand: brand, company: company})
+        })
+        const json = await response.json()
+        if (json.success) {
+            alert("Added successfully")
+            navigate('/products')
+        }
+    }
+
+    const displayProducts = async () => {
+        const response = await fetch(`${host}/api/product/all`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            }
+        })
+        const json = await response.json()
+        if (json.success) {
+            return json.products
+        } else {
+            return []
+        }
+    }
+
+    const deleteProduct = async (id) => {
+        const response = await fetch(`${host}/api/product/delete/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            }
+        })
+        const json = await response.json()
+        console.log(json)
+    }
+
   return (
-    <UserContext.Provider value={{UserSignup, UserLogin, UserLogout, name}}>
+    <UserContext.Provider value={{UserSignup, UserLogin, UserLogout, name, addProduct, displayProducts, deleteProduct}}>
         {props.children}
     </UserContext.Provider>
   )
