@@ -91,13 +91,27 @@ function AppState(props) {
                 'Content-Type': 'application/json',
                 'auth-token': localStorage.getItem('token')
             }
+            
         })
         const json = await response.json()
         console.log(json)
     }
 
+    const updateProduct = async (id, title, brand, company) => {
+        const response = await fetch (`${host}/api/product/update/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            },
+            body: JSON.stringify({title: title, brand: brand, company: company})
+        })
+        const json = response.json()
+        console.log(json)  
+    }
+
   return (
-    <UserContext.Provider value={{UserSignup, UserLogin, UserLogout, name, addProduct, displayProducts, deleteProduct}}>
+    <UserContext.Provider value={{UserSignup, UserLogin, UserLogout, name, addProduct, displayProducts, deleteProduct, updateProduct}}>
         {props.children}
     </UserContext.Provider>
   )
