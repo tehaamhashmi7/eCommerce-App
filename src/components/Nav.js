@@ -81,7 +81,7 @@ function Nav() {
           eCommerce App
         </Typography>
         <Hidden mdDown>
-          <Stack direction={"row"} spacing="3">
+        <Stack direction={"row"} spacing="2" p={1}>
             {navigationLinks.map((data, index) => {
               if (data.name == "Profile") {
                 return (
@@ -165,13 +165,13 @@ function Nav() {
           {profileLinks.map(data => {
             if (data.name == "Logout") {
               return (
-                <MenuItem onClick={() => toggleProfile(null)}>
+                <MenuItem key={'logout'} onClick={() => toggleProfile(null)}>
                     <Button variant="text" size="small" onClick={handleLogout}>{data.name}</Button>
               </MenuItem>
               )
             } else {
               return (
-                <MenuItem onClick={() => toggleProfile(null)}>
+                <MenuItem key={data.name} onClick={() => toggleProfile(null)}>
                     <Link
                       key={data.path}
                       style={{ textDecoration: "none", color: "black" }}
@@ -192,9 +192,9 @@ function Nav() {
           MenuListProps={{ "aria-labelledby": "products-button" }}
           onClose={() => toggleProducts(null)}
         >
-          {productLinks.map(every => {
+          {productLinks.map((every, index) => {
             return (
-              <MenuItem>
+              <MenuItem key={every.name}>
               <Link
                       key={every.path}
                       style={{ textDecoration: "none", color: "black" }}
@@ -244,7 +244,7 @@ function Nav() {
                   <Divider />
                   </Box>
                 );
-              } else if (data.name == "Products") {
+              } if (data.name == "Products" && localStorage.getItem('token')) {
                 return (
                   <Box>
                   <Button
@@ -264,14 +264,15 @@ function Nav() {
                       )
                     }
                   >
-                    {data.name}
+                    Products
                   </Button>
                   <Divider />
                   </Box>
                 );
-              } else {
+              }
+              else if (data.name !== "Profile" && data.name !== "Products") {
                 return (
-                  <Box>
+                 <Box>
                   <Button
                     key={index}
                     variant="text"
@@ -287,9 +288,10 @@ function Nav() {
                     </Link>
                   </Button>
                   <Divider />
-                  </Box>
+                  </Box>  
                 );
               }
+              
             })}
           </Stack>
       </SwipeableDrawer>

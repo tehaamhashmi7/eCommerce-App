@@ -1,10 +1,10 @@
-import { AppBar, Toolbar, Typography } from "@mui/material";
+import { Toolbar, Typography, BottomNavigation } from "@mui/material";
 import { display } from "@mui/system";
 import React from "react";
 
 function Footerr() {
   return (
-    <AppBar position="sticky" color="primary">
+    <BottomNavigation sx={{color:'white', backgroundColor: '#1976d2', width: '100%', position: 'fixed', bottom: 0}}>
       <Toolbar style={{ display: "flex", justifyContent: "center" }}>
         <Typography variant="h6" component={"div"} textAlign="center">
           E-Com Dashboard{" "}
@@ -13,7 +13,7 @@ function Footerr() {
           © All Rights Reserved
         </Typography>
       </Toolbar>
-    </AppBar>
+    </BottomNavigation>
   );
 }
 

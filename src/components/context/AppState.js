@@ -22,7 +22,9 @@ function AppState(props) {
         const json = await response.json()
         if (json.success) {
             localStorage.setItem('token', json.token)
+            setName(username)
             console.log(json)
+            navigate('/')
         } else {
             console.log(json)
         }

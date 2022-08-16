@@ -38,7 +38,7 @@ function Login() {
   }
 
   return (
-    <Paper sx={{ padding: "32px" }} elevation={2}>
+    <Paper sx={{ padding: "32px" }} elevation={0}>
       <Grid container>
         <Grid item lg={3} md={1} sm={0} xs={0}></Grid>
         <Grid item lg={6} md={10} sm={12} xs={12}>

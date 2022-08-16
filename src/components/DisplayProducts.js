@@ -63,7 +63,7 @@ function DisplayProducts() {
   }, [reload]);
 
   return (
-    <Paper sx={{ padding: "32px" }} elevation={2}>
+    <Paper sx={{ padding: "32px" }} elevation={0}>
       <Grid container>
         <Grid item lg={1} md={1} sm={0} xs={0}></Grid>
         <Grid item lg={10} md={10} sm={12} xs={12}>
@@ -81,7 +81,7 @@ function DisplayProducts() {
             p={5}
             className="modal fade"
             id="exampleModal"
-            tabindex="-1"
+            tabIndex="-1"
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
           >
@@ -158,11 +158,11 @@ function DisplayProducts() {
           </Box>
           <Stack spacing={2} textAlign="center">
             <Typography variant="h3">My Products</Typography>
-            <Grid container>
-              {myProducts.map((product) => {
+            <Grid sx={{display:'flex', 'justifyContent': 'center'}} container>
+              {myProducts.map((product, index) => {
                 let details = product;
                 return (
-                  <Grid p={1} item m={1} lg={4} md={6} sm={12} xs={12}>
+                  <Grid key={index} p={1} item m={1} lg={4} md={6} sm={12} xs={12}>
                     <Card sx={{ bgcolor: "smoke" }}>
                       <CardContent>
                         <Typography variant="h4">{product.title}</Typography>
