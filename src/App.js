@@ -11,6 +11,9 @@ import AddProduct from './components/AddProduct';
 import DisplayProducts from './components/DisplayProducts';
 
 function App() {
+
+  const token = localStorage.getItem('token')
+
   return (
     <AppState>
     <div className="App">
@@ -18,8 +21,8 @@ function App() {
       <Routes>
         <Route exact={true} path='/signup' element={<SignUp />} ></Route>
         <Route exact={true} path='/login' element={<Login />} ></Route>
-        <Route exact={true} path='/products' element={<DisplayProducts />} ></Route>
-        <Route exact={true} path='/products/add' element={<AddProduct />} ></Route>
+        <Route exact={true} path='/products' element={token ?<DisplayProducts /> : <Login />} ></Route>
+        <Route exact={true} path='/products/add' element={token ? <AddProduct /> : <Login />} ></Route>
         <Route exact={true} path='/' element={<Home />} ></Route>
         <Route exact={true} path='/' element={<Home />} ></Route>
       </Routes>
